@@ -25,15 +25,17 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.MultiFactorResolver;
 
 public class LogIn extends AppCompatActivity {
+    // TAG to use for debug messages
+    private static final String TAG = "TEAM8_ACTIVITY";
+
     Button login, create;
     EditText editTextEmail, editTextPassword;
     private FirebaseAuth mAuth;
-    private static final String TAG = "EmailPassword";
 
     int counter = 3;
 
     public void onCreate(Bundle savedInstanceState) {
-        Log.d("Login onCreate", "Made it to the onCreate of Login");
+        Log.d(TAG,"Made it to the onCreate for Login");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.log_in);
         editTextEmail = (EditText) findViewById(R.id.editTextEmail);
@@ -41,7 +43,38 @@ public class LogIn extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-        Log.d("Firebase Initialized", "Made it past Login initialization.");
+        Log.d(TAG, "Made it past Fireball Login initialization.");
+    }
+
+    // [START on_start_check_user]
+    @Override
+    public void onStart() {
+        super.onStart();
+        // Check if user is signed in (non-null) and update UI accordingly.
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if(currentUser != null){
+            reload();
+        }
+    }
+    // [END on_start_check_user]
+
+    private void reload() {
+        mAuth.getCurrentUser().reload().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                if (task.isSuccessful()) {
+                    // vb updateUI(mAuth.getCurrentUser());
+                    Toast.makeText(LogIn.this,
+                            "Reload successful!",
+                            Toast.LENGTH_SHORT).show();
+                } else {
+                    Log.e(TAG, "reload", task.getException());
+                    Toast.makeText(LogIn.this,
+                            "Failed to reload user.",
+                            Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     // Validate Email and Password
