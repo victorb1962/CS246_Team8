@@ -1,0 +1,17 @@
+We are develop an education and grade tracking system. It is password protected for students and their parents to track the progress of their grades which will be helpful to keep on track with education goals. The plan is to also track current courses being taken and the school class assignments.
+
+
+• Have all Activities and User-Interfaces identified and developed with tweaking and testing remaining?
+• Identify the design of the app – fonts, colors, images, the theme to use
+• Identify the authentication method to use
+• Identify the database for uses by the android app
+• Agree on the layout and outcome of the final product
+
+
+We have the activities and user interfaces identified.
+We have built a common library of the theme, fonts, colors, images, and strings to be used.
+We have agreed on the layout and final product of the team application.
+
+The authentication process has been completed using Google's Firebase Authentication.
+We are still working out the database type to be used. It will not be cloud-based as we had initially planned but instead be stored locally since it is personalized data.
+
