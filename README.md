@@ -1,8 +1,7 @@
 # CS246_Team8 Project
 
 CS246 Software Design and Development
-BYU-Idaho
-Winter 2021
+BYU-Idaho - Winter 2021
 
 Course Outcomes
 1. Demonstrate knowledge of the principles and practices of good object-oriented design.
